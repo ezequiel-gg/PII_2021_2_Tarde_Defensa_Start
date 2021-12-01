@@ -2,7 +2,7 @@ using System;
 
 namespace Ucu.Poo.Defense
 {
-    public class PromoCode
+    public class PromoCode: IOfferItem
     {
         private string code {get;set;}
         private int amount;
@@ -15,6 +15,10 @@ namespace Ucu.Poo.Defense
             }
             set
             {
+                if (value > 0)
+                {
+                    throw new ArgumentException("Deberia ser negativo");
+                }
                 this.amount = value;
             }
         }

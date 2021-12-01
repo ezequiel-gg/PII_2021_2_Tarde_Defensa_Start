@@ -1,7 +1,8 @@
 namespace Ucu.Poo.Defense
 {
-    public class OfferItem
+    public class OfferItem : IOfferItem
     {
+
         public Residue Residue { get; set; }
 
         public int Quantity { get; set; }

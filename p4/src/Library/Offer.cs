@@ -9,11 +9,11 @@ namespace Ucu.Poo.Defense
     {
         public DateTime EndDate { get; set; }
 
-        public IReadOnlyCollection<OfferItem> Items
+        public IReadOnlyCollection<IOfferItem> Items
         {
             get
             {
-                return new ReadOnlyCollection<OfferItem>(this.items);
+                return new ReadOnlyCollection<IOfferItem>(this.items);
             }
         }
 
@@ -22,16 +22,17 @@ namespace Ucu.Poo.Defense
             get
             {
                 double result = 0;
-                foreach (OfferItem item in this.items)
+                foreach (IOfferItem item in this.items)
                 {
                     result = result + item.SubTotal;
                 }
 
                 return result;
             }
+            private set{}
         }
 
-        private IList<OfferItem> items = new List<OfferItem>();
+        private IList<IOfferItem> items = new List<IOfferItem>();
 
         public Offer(DateTime endDate)
         {
@@ -45,9 +46,16 @@ namespace Ucu.Poo.Defense
             return item;
         }
 
-        public void RemoveItem(OfferItem item)
+        public void RemoveItem(IOfferItem item)
         {
             this.items.Remove(item);
+        }
+
+        public PromoCode AddDiscount(int discount)
+        {
+            PromoCode promo = new PromoCode("", discount);
+            this.items.Add(promo);
+            return promo;
         }
     }
 }
