@@ -22,5 +22,9 @@ namespace Ucu.Poo.Defense
             this.Quantity = quantity;
             this.Price = price;
         }
+
+         public string AsText() { 
+            return $"{this.Quantity} {this.Residue.AsText()} a {this.Price}";
+        }
     }
 }
